@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Web App - {{ env | capitalize }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+    
+    <main class="container">
+        <div class="card glass">
+            <header class="header">
+                <div class="logo-wrapper">
+                    <svg class="azure-icon" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M51.8 14.8L28.6 57.6L44.8 81.2L77.6 81.2L51.8 14.8Z" fill="url(#paint0_linear)"/>
+                        <path d="M51.8 14.8L38.2 46.2L54.4 71.2L18.4 71.2L42.8 14.8H51.8Z" fill="url(#paint1_linear)"/>
+                        <defs>
+                            <linearGradient id="paint0_linear" x1="53.1" y1="14.8" x2="61.2" y2="81.2" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#0078D4"/>
+                                <stop offset="1" stop-color="#005BA1"/>
+                            </linearGradient>
+                            <linearGradient id="paint1_linear" x1="18.4" y1="43" x2="54.4" y2="43" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#50E6FF"/>
+                                <stop offset="1" stop-color="#0078D4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div>
+                        <h1 class="title">Azure Cloud App</h1>
+                        <p class="subtitle">Containerized Flask Web Service</p>
+                    </div>
+                </div>
+                <span class="badge badge-{{ env }}">{{ env | upper }}</span>
+            </header>
+
+            <section class="metrics-grid">
+                <div class="metric-box">
+                    <span class="metric-label">Status</span>
+                    <div class="status-indicator">
+                        <span class="pulse-dot"></span>
+                        <span class="metric-value status-online">Running</span>
+                    </div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Environment</span>
+                    <span class="metric-value">{{ env }}</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">App Version</span>
+                    <span class="metric-value">v{{ version }}</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Python Runtime</span>
+                    <span class="metric-value code-font">{{ python_version }}</span>
+                </div>
+            </section>
+
+            <section class="api-preview">
+                <div class="api-header">
+                    <span>REST API Endpoint</span>
+                    <a href="/api/info" target="_blank" class="api-link">Open JSON ↗</a>
+                </div>
+                <pre class="json-code"><code>{
+  <span class="json-key">"status"</span>: <span class="json-string">"healthy"</span>,
+  <span class="json-key">"env"</span>: <span class="json-string">"{{ env }}"</span>,
+  <span class="json-key">"version"</span>: <span class="json-string">"{{ version }}"</span>,
+  <span class="json-key">"python"</span>: <span class="json-string">"{{ python_version }}"</span>
+}</code></pre>
+            </section>
+
+            <footer class="footer">
+                <span>Deployed to Azure App Service & Docker Hub</span>
+            </footer>
+        </div>
+    </main>
+</body>
+</html>

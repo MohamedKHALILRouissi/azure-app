@@ -8,5 +8,6 @@ app = Flask(__name__)
 def hello():
     return jsonify({
         "version": 1,
+        "env": "staging",
         "python": sys.version.split()[0]
     })
